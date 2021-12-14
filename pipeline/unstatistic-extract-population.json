@@ -1,7 +1,7 @@
 {
 	"name": "unstatistic-extract-population",
 	"properties": {
-		"description": "extract dats from csv file to SQL database",
+		"description": "extract data from csv file to SQL database",
 		"activities": [
 			{
 				"name": "Copy population to SQL",
