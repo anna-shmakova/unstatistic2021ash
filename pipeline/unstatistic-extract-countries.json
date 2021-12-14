@@ -312,7 +312,7 @@
 				"typeProperties": {
 					"variableName": "PipelineExecutionDescription",
 					"value": {
-						"value": "@activity('Copy countries to SQL').output",
+						"value": "@activity('Copy countries to SQL').output.errors[0].Message",
 						"type": "Expression"
 					}
 				}
