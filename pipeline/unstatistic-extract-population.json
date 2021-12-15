@@ -914,9 +914,9 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Copy population to SQL",
+						"activity": "Set variable PipelineExecutionDescription",
 						"dependencyConditions": [
-							"Failed"
+							"Succeeded"
 						]
 					}
 				],
@@ -942,6 +942,23 @@
 				"typeProperties": {
 					"variableName": "PipelineExecutionStatus",
 					"value": "succeed"
+				}
+			},
+			{
+				"name": "Set variable PipelineExecutionDescription",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Copy population to SQL",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "PipelineExecutionDescription",
+					"value": "@activity('Copy population to SQL').output.errors[0].Message"
 				}
 			}
 		],
