@@ -19,6 +19,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'unstatisticstac'"
 		},
+		"unstatistickyvtash_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://unstatistickyvtashdev.vault.azure.net/"
+		},
+		"msbiazurelinkedservicekeyvault_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "unstatisticdwh-connectionstring"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -54,10 +62,36 @@
 					},
 					"unstatisticstac_connectionString": {
 						"value": "[parameters('unstatisticstac_connectionString')]"
+					},
+					"unstatistickyvtash_properties_typeProperties_baseUrl": {
+						"value": "[parameters('unstatistickyvtash_properties_typeProperties_baseUrl')]"
+					},
+					"msbiazurelinkedservicekeyvault_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('msbiazurelinkedservicekeyvault_properties_typeProperties_connectionString_secretName')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "unstatisticdafashdev_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'unstatisticdafashdev_ArmTemplate_0')]"
+			]
 		}
 	]
 }
